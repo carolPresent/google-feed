@@ -66,7 +66,18 @@ app.post('/feed',async (req,res)=>{
         res.status(500).send("Internal server error");
     }
 
-})
+});
+
+app.put('/feed',async (req,res)=>{
+    try
+    {
+        res.send(await feedService.UnlockFeeds(req.body.FeedIds));
+    }
+    catch(err)
+    {
+        res.status(500).send("Internal server error");
+    }
+});
 
 app.post('/loginSave',async (req,res)=>{
 

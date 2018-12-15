@@ -97,7 +97,7 @@ app.post('/feed', function () {
     };
 }());
 
-app.post('/loginSave', function () {
+app.put('/feed', function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res) {
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
             while (1) {
@@ -106,7 +106,7 @@ app.post('/loginSave', function () {
                         _context2.prev = 0;
                         _context2.t0 = res;
                         _context2.next = 4;
-                        return googleapis.GetGoogleAccountFromCode(req.query.code);
+                        return feedService.UnlockFeeds(req.body.FeedIds);
 
                     case 4:
                         _context2.t1 = _context2.sent;
@@ -132,6 +132,44 @@ app.post('/loginSave', function () {
 
     return function (_x3, _x4) {
         return _ref2.apply(this, arguments);
+    };
+}());
+
+app.post('/loginSave', function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(req, res) {
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+            while (1) {
+                switch (_context3.prev = _context3.next) {
+                    case 0:
+                        _context3.prev = 0;
+                        _context3.t0 = res;
+                        _context3.next = 4;
+                        return googleapis.GetGoogleAccountFromCode(req.query.code);
+
+                    case 4:
+                        _context3.t1 = _context3.sent;
+
+                        _context3.t0.send.call(_context3.t0, _context3.t1);
+
+                        _context3.next = 11;
+                        break;
+
+                    case 8:
+                        _context3.prev = 8;
+                        _context3.t2 = _context3['catch'](0);
+
+                        res.status(500).send("Internal server error");
+
+                    case 11:
+                    case 'end':
+                        return _context3.stop();
+                }
+            }
+        }, _callee3, undefined, [[0, 8]]);
+    }));
+
+    return function (_x5, _x6) {
+        return _ref3.apply(this, arguments);
     };
 }());
 
