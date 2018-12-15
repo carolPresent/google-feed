@@ -20,11 +20,11 @@
 
     let suffix=location.href;
 
-    suffix=suffix.split('?code=');
+    suffix=suffix.toString().split('?code=');
 
     if(suffix.length==2){
 
-        suffix=suffix.split('?code=')[1];
+        suffix=suffix[1];
 
         $.ajax({
             type:"POST",
