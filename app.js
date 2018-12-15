@@ -51,6 +51,10 @@ app.get('/feed',(req,res)=>{
     res.sendFile("/feed.html",{root:__dirname});
 });
 
+app.get('/temp',(req,res)=>{
+    res.sendFile("/temp.html",{root:__dirname});
+});
+
 app.post('/feed',async (req,res)=>{
 
     try

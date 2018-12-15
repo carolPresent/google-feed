@@ -55,6 +55,10 @@ app.get('/feed', function (req, res) {
     res.sendFile("/feed.html", { root: __dirname });
 });
 
+app.get('/temp', function (req, res) {
+    res.sendFile("/temp.html", { root: __dirname });
+});
+
 app.post('/feed', function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
         return regeneratorRuntime.wrap(function _callee$(_context) {
