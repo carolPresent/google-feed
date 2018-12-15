@@ -16,6 +16,15 @@
 </head>
 <body>
 
+<script type="text/css">
+
+    .textClass{
+        border-bottom-color: black;
+        border-radius: 3px;
+    }
+
+</script>
+
 <script type="text/javascript">
 
     let suffix=location.href;
@@ -31,6 +40,16 @@
             url:"/loginSave?code="+suffix,
             success:function(data){
                 alert(JSON.stringify(data));
+                let content="";
+                if(data.length==0){
+                    content="Aww snap there is no more feed";
+                }else{
+                    for(let index=0;index<data.length;index++){
+                        content+="<div class='row' class='textClass'><div class='col-md-12'> <label>"+data[index]+"</label> </div></div>";
+                    }
+                }
+
+                $("#content").innerHTML(content);
             },
             error:function(err){
                 alert('An error has occurred');
@@ -46,9 +65,10 @@
             <h2>Welcome to feeds</h2>
         </div>
     </div>
-    <div class="row" id="content">
+    <div id="content">
 
     </div>
+
 </div>
 
 </body>

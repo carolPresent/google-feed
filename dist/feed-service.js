@@ -32,7 +32,92 @@ var getFeeds = function () {
     };
 }();
 
+var unlockFeeds = function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(feedIds) {
+        var index, feeds, _index;
+
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+            while (1) {
+                switch (_context2.prev = _context2.next) {
+                    case 0:
+
+                        for (index = 0; index < feedIds.length; index++) {
+                            feedIds[index] = Database.CreateObjectId(feedIds[index]);
+                        }
+
+                        _context2.next = 3;
+                        return Repository.getMany(Database.Feed, { _id: { $in: feedIds } });
+
+                    case 3:
+                        feeds = _context2.sent;
+                        _index = 0;
+
+                    case 5:
+                        if (!(_index < feeds.length)) {
+                            _context2.next = 12;
+                            break;
+                        }
+
+                        feeds[_index].IsOccupied = false;
+
+                        _context2.next = 9;
+                        return feeds[_index].save();
+
+                    case 9:
+                        _index++;
+                        _context2.next = 5;
+                        break;
+
+                    case 12:
+                        return _context2.abrupt('return', "Unloacked successfully");
+
+                    case 13:
+                    case 'end':
+                        return _context2.stop();
+                }
+            }
+        }, _callee2, undefined);
+    }));
+
+    return function unlockFeeds(_x) {
+        return _ref2.apply(this, arguments);
+    };
+}();
+
+var addFeed = function () {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee3(feed) {
+        var newFeedModel, feedAddStatus;
+        return regeneratorRuntime.wrap(function _callee3$(_context3) {
+            while (1) {
+                switch (_context3.prev = _context3.next) {
+                    case 0:
+                        newFeedModel = new Database.Feed({
+                            Name: feed.Data,
+                            Type: feed.Type
+                        });
+                        _context3.next = 3;
+                        return Repository.saveOne(newFeedModel);
+
+                    case 3:
+                        feedAddStatus = _context3.sent;
+                        return _context3.abrupt('return', "Added feed successfully");
+
+                    case 5:
+                    case 'end':
+                        return _context3.stop();
+                }
+            }
+        }, _callee3, undefined);
+    }));
+
+    return function addFeed(_x2) {
+        return _ref3.apply(this, arguments);
+    };
+}();
+
 module.exports = {
-    GetFeeds: getFeeds
+    GetFeeds: getFeeds,
+    UnlockFeeds: unlockFeeds,
+    AddFeed: addFeed
 };
 //# sourceMappingURL=feed-service.js.map

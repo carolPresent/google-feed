@@ -66,6 +66,11 @@ var UserSchema=new Schema({
     }
 });
 
+var CreateObjectId=(_id)=>{
+
+    return new mongoose.Types.ObjectId(_id);
+}
+
 var Feed=mongoose.model("Feed",FeedSchema);
 var Token=mongoose.model("Token",TokenSchema);
 var User=mongoose.model("User",UserSchema);
@@ -74,5 +79,6 @@ module.exports={
     Init:init,
     Feed,
     Token,
-    User
+    User,
+    CreateObjectId
 };

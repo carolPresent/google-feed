@@ -9,6 +9,7 @@ app.use(bodyParser.json());
 var portNumber=process.env.PORT || 4242;
 var database=require('./database');
 var googleapis=require('./googleapis');
+var feedService=require('./feed-service');
 var mongoDbUri="mongodb://heroku_r07skxkq:f5q4s0fnq1hcpep0lf3n76omnh@ds117849.mlab.com:17849/heroku_r07skxkq";
 //mongoDbUri="mongodb://localhost:27017/GoogleFeed";
 database.Init(mongoDbUri);
@@ -50,6 +51,19 @@ app.get('/feed',(req,res)=>{
     res.sendFile("/feed.html",{root:__dirname});
 });
 
+app.post('/feed',async (req,res)=>{
+
+    try
+    {
+        res.send(await feedService.AddFeed(req.body));
+    }
+    catch(err)
+    {
+        res.status(500).send("Internal server error");
+    }
+
+})
+
 app.post('/loginSave',async (req,res)=>{
 
     try
@@ -58,7 +72,7 @@ app.post('/loginSave',async (req,res)=>{
     }
     catch(err)
     {
-        resn.status(500).send("Internal server error");
+        res.status(500).send("Internal server error");
     }
 
 });

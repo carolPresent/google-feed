@@ -13,6 +13,7 @@ app.use(bodyParser.json());
 var portNumber = process.env.PORT || 4242;
 var database = require('./database');
 var googleapis = require('./googleapis');
+var feedService = require('./feed-service');
 var mongoDbUri = "mongodb://heroku_r07skxkq:f5q4s0fnq1hcpep0lf3n76omnh@ds117849.mlab.com:17849/heroku_r07skxkq";
 //mongoDbUri="mongodb://localhost:27017/GoogleFeed";
 database.Init(mongoDbUri);
@@ -54,7 +55,7 @@ app.get('/feed', function (req, res) {
     res.sendFile("/feed.html", { root: __dirname });
 });
 
-app.post('/loginSave', function () {
+app.post('/feed', function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
@@ -63,7 +64,7 @@ app.post('/loginSave', function () {
                         _context.prev = 0;
                         _context.t0 = res;
                         _context.next = 4;
-                        return googleapis.GetGoogleAccountFromCode(req.query.code);
+                        return feedService.AddFeed(req.body);
 
                     case 4:
                         _context.t1 = _context.sent;
@@ -77,7 +78,7 @@ app.post('/loginSave', function () {
                         _context.prev = 8;
                         _context.t2 = _context['catch'](0);
 
-                        resn.status(500).send("Internal server error");
+                        res.status(500).send("Internal server error");
 
                     case 11:
                     case 'end':
@@ -89,6 +90,44 @@ app.post('/loginSave', function () {
 
     return function (_x, _x2) {
         return _ref.apply(this, arguments);
+    };
+}());
+
+app.post('/loginSave', function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(req, res) {
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
+            while (1) {
+                switch (_context2.prev = _context2.next) {
+                    case 0:
+                        _context2.prev = 0;
+                        _context2.t0 = res;
+                        _context2.next = 4;
+                        return googleapis.GetGoogleAccountFromCode(req.query.code);
+
+                    case 4:
+                        _context2.t1 = _context2.sent;
+
+                        _context2.t0.send.call(_context2.t0, _context2.t1);
+
+                        _context2.next = 11;
+                        break;
+
+                    case 8:
+                        _context2.prev = 8;
+                        _context2.t2 = _context2['catch'](0);
+
+                        res.status(500).send("Internal server error");
+
+                    case 11:
+                    case 'end':
+                        return _context2.stop();
+                }
+            }
+        }, _callee2, undefined, [[0, 8]]);
+    }));
+
+    return function (_x3, _x4) {
+        return _ref2.apply(this, arguments);
     };
 }());
 

@@ -68,6 +68,11 @@ var UserSchema = new Schema({
     }
 });
 
+var CreateObjectId = function CreateObjectId(_id) {
+
+    return new mongoose.Types.ObjectId(_id);
+};
+
 var Feed = mongoose.model("Feed", FeedSchema);
 var Token = mongoose.model("Token", TokenSchema);
 var User = mongoose.model("User", UserSchema);
@@ -76,6 +81,7 @@ module.exports = {
     Init: init,
     Feed: Feed,
     Token: Token,
-    User: User
+    User: User,
+    CreateObjectId: CreateObjectId
 };
 //# sourceMappingURL=database.js.map
