@@ -22,25 +22,12 @@
 
     suffix=suffix.split('?code=')[1];
 
-    var getFeeds=function(){
-        $.ajax({
-            type:"GET",
-            url:"/",
-            success:function(data){
-                alert(data);
-            },
-            error:function(err){
-                alert('An error has occurred');
-            }
-        });
-    }
-
     $.ajax({
         type:"POST",
         url:"/loginSave?code="+suffix,
         success:function(data){
             alert(data);
-            getFeeds();
+            //getFeeds();
         },
         error:function(err){
             alert('An error has occurred');

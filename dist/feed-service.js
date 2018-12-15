@@ -22,4 +22,8 @@ var getFeeds = function () {
         return _ref.apply(this, arguments);
     };
 }();
+
+module.exports = {
+    GetFeeds: getFeeds
+};
 //# sourceMappingURL=feed-service.js.map
