@@ -50,6 +50,10 @@ app.get('/signinurl', function (req, res) {
     res.send(googleapis.UrlGoogle());
 });
 
+app.get('/feed', function (req, res) {
+    res.sendFile("/feed.html", { root: __dirname });
+});
+
 app.post('/loginSave', function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
         return regeneratorRuntime.wrap(function _callee$(_context) {
