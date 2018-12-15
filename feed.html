@@ -13,15 +13,18 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="./feed.css" type="text/css">
 
     <style>
         .textClass{
-            text-align: center;
             padding: 5px;
             border-bottom-color: black;
             border-radius: 3px;
+            font-size: 20px;
+            color: cadetblue;
+            margin: 10px;
+            box-shadow: 5px 5px rgba(68, 68, 68, 0.6);
         }
+
     </style>
 </head>
 <body>
@@ -46,7 +49,11 @@
                     content="Aww snap there is no more feed";
                 }else{
                     for(let index=0;index<data.length;index++){
-                        content+="<div class='row textClass'><div class='col-md-12'> <label>"+data[index].Data+"</label> </div></div>";
+                        if(data[index].Type=="Text") {
+                            content += "<div class='row textClass'><div class='col-md-12'> <label>" + data[index].Data + "</label> </div></div>";
+                        }else{
+                            content += "<div class='row textClass'><div class='col-md-12'> <a href='"+data[index].Data+"'></a> </div></div>";
+                        }
                     }
                 }
 
