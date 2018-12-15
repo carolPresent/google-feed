@@ -13,7 +13,9 @@ app.use(bodyParser.json());
 var portNumber = process.env.PORT || 4242;
 var database = require('./database');
 var googleapis = require('./googleapis');
-database.Init("mongodb://localhost:27017/GoogleFeed");
+var mongoDbUri = "mongodb://heroku_r07skxkq:f5q4s0fnq1hcpep0lf3n76omnh@ds117849.mlab.com:17849/heroku_r07skxkq";
+//mongoDbUri="mongodb://localhost:27017/GoogleFeed";
+database.Init(mongoDbUri);
 /*
 app.use(async (req,res,next)=>{
 
@@ -55,30 +57,26 @@ app.get('/feed', function () {
                 switch (_context.prev = _context.next) {
                     case 0:
                         _context.prev = 0;
-                        _context.t0 = res;
-                        _context.next = 4;
+                        _context.next = 3;
                         return googleapis.GetGoogleAccountFromCode(req.query.code);
 
-                    case 4:
-                        _context.t1 = _context.sent;
-
-                        _context.t0.send.call(_context.t0, _context.t1);
-
-                        _context.next = 11;
+                    case 3:
+                        res.sendFile("/feed.html", { root: __dirname });
+                        _context.next = 9;
                         break;
 
-                    case 8:
-                        _context.prev = 8;
-                        _context.t2 = _context['catch'](0);
+                    case 6:
+                        _context.prev = 6;
+                        _context.t0 = _context['catch'](0);
 
                         resn.status(500).send("Internal server error");
 
-                    case 11:
+                    case 9:
                     case 'end':
                         return _context.stop();
                 }
             }
-        }, _callee, undefined, [[0, 8]]);
+        }, _callee, undefined, [[0, 6]]);
     }));
 
     return function (_x, _x2) {

@@ -12,21 +12,66 @@ var init = function init(dbLink) {
 };
 
 var FeedSchema = new Schema({
-    Name: {
+    Data: {
         type: String,
         trim: true,
         required: true
     },
-    Users: [{
+    Type: {
+        type: String,
+        trim: true
+    }
+});
+
+var TokenSchema = new Schema({
+    AccessToken: {
+        type: String
+    },
+    RefreshToken: {
+        type: String
+    },
+    Scope: {
+        type: String
+    },
+    TokenType: {
+        type: String
+    },
+    IdToken: {
+        type: String,
+        index: true
+    },
+    ExpiryDate: {
+        type: Number
+    },
+    User: {
         type: Schema.ObjectId,
         ref: 'User'
-    }]
+    }
+});
+
+var UserSchema = new Schema({
+    Id: {
+        type: Number,
+        unique: true
+    },
+    Email: {
+        type: String,
+        unique: true
+    },
+    Token: {
+        type: Schema.ObjectId,
+        ref: 'Token'
+    }
 });
 
 var Feed = mongoose.model("Feed", FeedSchema);
+var Token = mongoose.model("Feed", TokenSchema);
+var User = mongoose.model("Feed", UserSchema);
 
 module.exports = {
     Init: init,
-    Feed: Feed
+    Feed: Feed,
+    Token: Token,
+    User: User
 };
 //# sourceMappingURL=database.js.map

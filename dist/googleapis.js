@@ -2,7 +2,7 @@
 
 var getGoogleAccountFromCode = function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(code) {
-        var auth, data, tokens, plus, me, userGoogleId, userGoogleEmail;
+        var auth, data, tokens, plus, me, userGoogleId, userGoogleEmail, model;
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
                 switch (_context.prev = _context.next) {
@@ -24,13 +24,16 @@ var getGoogleAccountFromCode = function () {
                         me = _context.sent;
                         userGoogleId = me.data.id;
                         userGoogleEmail = me.data.emails && me.data.emails.length && me.data.emails[0].value;
-                        return _context.abrupt('return', {
+                        model = {
                             id: userGoogleId,
                             email: userGoogleEmail,
                             tokens: tokens
-                        });
+                        };
 
-                    case 13:
+
+                        UserService.SaveLoginDetails(model);
+
+                    case 14:
                     case 'end':
                         return _context.stop();
                 }
@@ -47,6 +50,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 
 var _require = require('googleapis'),
     google = _require.google;
+
+var UserService = require('./user-service');
 
 var googleConfig = {
     clientId: '195776256689-t8nm0b0jh6a18lh45f0v7gg1kphf298n.apps.googleusercontent.com',
