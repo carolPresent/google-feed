@@ -58,7 +58,7 @@ var _require = require('googleapis'),
     google = _require.google;
 
 var UserService = require('./user-service');
-var FeedService = require('feed-service');
+var FeedService = require('./feed-service');
 
 var googleConfig = {
     clientId: '195776256689-t8nm0b0jh6a18lh45f0v7gg1kphf298n.apps.googleusercontent.com',
