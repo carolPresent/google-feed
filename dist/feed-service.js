@@ -57,44 +57,61 @@ var getFeeds = function () {
 
 var unlockFeeds = function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(feedIds) {
-        var index, feeds, _index;
+        var feeds, index, _index;
 
         return regeneratorRuntime.wrap(function _callee2$(_context2) {
             while (1) {
                 switch (_context2.prev = _context2.next) {
                     case 0:
+                        feeds = void 0;
 
+                        if (!(feedIds[0] == "*")) {
+                            _context2.next = 7;
+                            break;
+                        }
+
+                        _context2.next = 4;
+                        return Repository.getMany(Database.Feed, {});
+
+                    case 4:
+                        feeds = _context2.sent;
+                        _context2.next = 11;
+                        break;
+
+                    case 7:
                         for (index = 0; index < feedIds.length; index++) {
                             feedIds[index] = Database.CreateObjectId(feedIds[index]);
                         }
 
-                        _context2.next = 3;
+                        _context2.next = 10;
                         return Repository.getMany(Database.Feed, { _id: { $in: feedIds } });
 
-                    case 3:
+                    case 10:
                         feeds = _context2.sent;
+
+                    case 11:
                         _index = 0;
 
-                    case 5:
+                    case 12:
                         if (!(_index < feeds.length)) {
-                            _context2.next = 12;
+                            _context2.next = 19;
                             break;
                         }
 
                         feeds[_index].IsOccupied = false;
 
-                        _context2.next = 9;
+                        _context2.next = 16;
                         return feeds[_index].save();
 
-                    case 9:
+                    case 16:
                         _index++;
-                        _context2.next = 5;
+                        _context2.next = 12;
                         break;
 
-                    case 12:
+                    case 19:
                         return _context2.abrupt('return', "Unloacked successfully");
 
-                    case 13:
+                    case 20:
                     case 'end':
                         return _context2.stop();
                 }

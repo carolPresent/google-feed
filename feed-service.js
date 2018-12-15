@@ -19,11 +19,19 @@ var getFeeds=async ()=>{
 
 var unlockFeeds=async (feedIds)=>{
 
-    for(let index=0;index<feedIds.length;index++){
-        feedIds[index]=Database.CreateObjectId(feedIds[index]);
+    let feeds;
+
+    if(feedIds[0]=="*"){
+        feeds=await Repository.getMany(Database.Feed,{});
+    }
+    else{
+        for(let index=0;index<feedIds.length;index++){
+            feedIds[index]=Database.CreateObjectId(feedIds[index]);
+        }
+
+        feeds=await Repository.getMany(Database.Feed,{_id:{$in:feedIds}});
     }
 
-    let feeds=await Repository.getMany(Database.Feed,{_id:{$in:feedIds}});
 
     for(let index=0;index<feeds.length;index++){
         feeds[index].IsOccupied=false;
