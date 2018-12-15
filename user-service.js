@@ -32,7 +32,7 @@ var saveLoginDetails=async (data)=>{
 
         user.Token=token._id;
 
-        user.save();
+        await user.save();
 
     }
     

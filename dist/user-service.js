@@ -45,7 +45,7 @@ var saveLoginDetails = function () {
                         return Repository.saveOne(newUserModel);
 
                     case 11:
-                        _context.next = 17;
+                        _context.next = 18;
                         break;
 
                     case 13:
@@ -56,9 +56,10 @@ var saveLoginDetails = function () {
 
                         user.Token = token._id;
 
-                        user.save();
+                        _context.next = 18;
+                        return user.save();
 
-                    case 17:
+                    case 18:
                     case 'end':
                         return _context.stop();
                 }
