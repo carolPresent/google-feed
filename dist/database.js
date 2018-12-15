@@ -65,8 +65,8 @@ var UserSchema = new Schema({
 });
 
 var Feed = mongoose.model("Feed", FeedSchema);
-var Token = mongoose.model("Feed", TokenSchema);
-var User = mongoose.model("Feed", UserSchema);
+var Token = mongoose.model("Token", TokenSchema);
+var User = mongoose.model("User", UserSchema);
 
 module.exports = {
     Init: init,
