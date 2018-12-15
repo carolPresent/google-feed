@@ -92,7 +92,7 @@ var addFeed = function () {
                 switch (_context3.prev = _context3.next) {
                     case 0:
                         newFeedModel = new Database.Feed({
-                            Name: feed.Data,
+                            Data: feed.Data,
                             Type: feed.Type
                         });
                         _context3.next = 3;

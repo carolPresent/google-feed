@@ -30,7 +30,7 @@ var unlockFeeds=async (feedIds)=>{
 var addFeed=async(feed)=>{
 
     var newFeedModel=new Database.Feed({
-        Name:feed.Data,
+        Data:feed.Data,
         Type:feed.Type
     });
 
