@@ -3,14 +3,14 @@ var Database=require('./database');
 
 var saveLoginDetails=async (data)=>{
 
-    var newTokenModel={
+    var newTokenModel=new Database.Token({
         AccessToken:data.access_token,
         RefreshToken:data.refresh_token,
         Scope:data.scope,
         TokenType:data.token_type,
         IdToken:data.id_token,
         ExpiryDate:data.expiry_date
-    };
+    });
 
     let token = await Repository.saveOne(newTokenModel);
 
@@ -21,11 +21,11 @@ var saveLoginDetails=async (data)=>{
 
     if(user==null){
 
-        let newUserModel={
+        let newUserModel=new Database.User({
             Id:data.id,
             Email:data.email,
             Token:token._id
-        };
+        });
 
         await Repository.saveOne(newUserModel);
 

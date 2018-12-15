@@ -12,14 +12,14 @@ var saveLoginDetails = function () {
             while (1) {
                 switch (_context.prev = _context.next) {
                     case 0:
-                        newTokenModel = {
+                        newTokenModel = new Database.Token({
                             AccessToken: data.access_token,
                             RefreshToken: data.refresh_token,
                             Scope: data.scope,
                             TokenType: data.token_type,
                             IdToken: data.id_token,
                             ExpiryDate: data.expiry_date
-                        };
+                        });
                         _context.next = 3;
                         return Repository.saveOne(newTokenModel);
 
@@ -40,11 +40,11 @@ var saveLoginDetails = function () {
                             break;
                         }
 
-                        newUserModel = {
+                        newUserModel = new Database.User({
                             Id: data.id,
                             Email: data.email,
                             Token: token._id
-                        };
+                        });
                         _context.next = 13;
                         return Repository.saveOne(newUserModel);
 
