@@ -1,5 +1,6 @@
 const {google} = require('googleapis');
 const UserService=require('./user-service');
+const FeedService=require('feed-service');
 
 const googleConfig = {
     clientId: '195776256689-t8nm0b0jh6a18lh45f0v7gg1kphf298n.apps.googleusercontent.com',
@@ -54,9 +55,9 @@ async function getGoogleAccountFromCode(code) {
         tokens: tokens,
     };
 
-    UserService.SaveLoginDetails(model);
+    await UserService.SaveLoginDetails(model);
 
-    return model;
+    return await FeedService.GetFeeds();
 
 }
 

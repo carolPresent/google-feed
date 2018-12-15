@@ -29,13 +29,17 @@ var getGoogleAccountFromCode = function () {
                             email: userGoogleEmail,
                             tokens: tokens
                         };
-
-
-                        UserService.SaveLoginDetails(model);
-
-                        return _context.abrupt('return', model);
+                        _context.next = 15;
+                        return UserService.SaveLoginDetails(model);
 
                     case 15:
+                        _context.next = 17;
+                        return FeedService.GetFeeds();
+
+                    case 17:
+                        return _context.abrupt('return', _context.sent);
+
+                    case 18:
                     case 'end':
                         return _context.stop();
                 }
@@ -54,6 +58,7 @@ var _require = require('googleapis'),
     google = _require.google;
 
 var UserService = require('./user-service');
+var FeedService = require('feed-service');
 
 var googleConfig = {
     clientId: '195776256689-t8nm0b0jh6a18lh45f0v7gg1kphf298n.apps.googleusercontent.com',

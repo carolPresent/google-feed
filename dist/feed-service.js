@@ -6,11 +6,20 @@ var Repository = require('./dbfunctions');
 var Database = require('./database');
 
 var getFeeds = function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
+    var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var feeds;
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
                 switch (_context.prev = _context.next) {
                     case 0:
+                        _context.next = 2;
+                        return Repository.getMany(Database.Feed, { IsOccupied: false });
+
+                    case 2:
+                        feeds = _context.sent;
+                        return _context.abrupt('return', feeds.slice(0, 5));
+
+                    case 4:
                     case 'end':
                         return _context.stop();
                 }
@@ -18,7 +27,7 @@ var getFeeds = function () {
         }, _callee, undefined);
     }));
 
-    return function getFeeds(_x, _x2) {
+    return function getFeeds() {
         return _ref.apply(this, arguments);
     };
 }();

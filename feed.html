@@ -20,19 +20,23 @@
 
     let suffix=location.href;
 
-    suffix=suffix.split('?code=')[1];
+    suffix=suffix.split('?code=');
 
-    $.ajax({
-        type:"POST",
-        url:"/loginSave?code="+suffix,
-        success:function(data){
-            alert(data);
-            //getFeeds();
-        },
-        error:function(err){
-            alert('An error has occurred');
-        }
-    });
+    if(suffix.length==2){
+
+        suffix=suffix.split('?code=')[1];
+
+        $.ajax({
+            type:"POST",
+            url:"/loginSave?code="+suffix,
+            success:function(data){
+                alert(JSON.stringify(data));
+            },
+            error:function(err){
+                alert('An error has occurred');
+            }
+        });
+    }
 </script>
 
 </body>

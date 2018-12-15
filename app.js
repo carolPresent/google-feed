@@ -46,10 +46,6 @@ app.get('/signinurl',(req,res)=>{
     res.send(googleapis.UrlGoogle());
 });
 
-app.get('/feed',(req,res)=>{
-    res.sendFile("/feed.html",{root:__dirname});
-});
-
 app.post('/loginSave',async (req,res)=>{
 
     try

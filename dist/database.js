@@ -20,6 +20,10 @@ var FeedSchema = new Schema({
     Type: {
         type: String,
         trim: true
+    },
+    IsOccupied: {
+        type: Boolean,
+        default: false
     }
 });
 
