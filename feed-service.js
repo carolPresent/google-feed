@@ -5,7 +5,15 @@ var getFeeds=async ()=>{
 
     let feeds=await Repository.getMany(Database.Feed,{IsOccupied:false});
 
-    return feeds.slice(0,5);
+    feeds=feeds.slice(0,5);
+
+    for(let index=0;index<feeds.length;index++){
+        feeds[index].IsOccupied=true;
+
+        await feeds[index].save();
+    }
+
+    return feeds;
 
 }
 

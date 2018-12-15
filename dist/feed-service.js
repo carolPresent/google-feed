@@ -7,7 +7,7 @@ var Database = require('./database');
 
 var getFeeds = function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        var feeds;
+        var feeds, index;
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
                 switch (_context.prev = _context.next) {
@@ -17,9 +17,32 @@ var getFeeds = function () {
 
                     case 2:
                         feeds = _context.sent;
-                        return _context.abrupt('return', feeds.slice(0, 5));
 
-                    case 4:
+
+                        feeds = feeds.slice(0, 5);
+
+                        index = 0;
+
+                    case 5:
+                        if (!(index < feeds.length)) {
+                            _context.next = 12;
+                            break;
+                        }
+
+                        feeds[index].IsOccupied = true;
+
+                        _context.next = 9;
+                        return feeds[index].save();
+
+                    case 9:
+                        index++;
+                        _context.next = 5;
+                        break;
+
+                    case 12:
+                        return _context.abrupt('return', feeds);
+
+                    case 13:
                     case 'end':
                         return _context.stop();
                 }
