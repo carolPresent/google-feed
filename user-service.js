@@ -16,9 +16,6 @@ var saveLoginDetails=async (data)=>{
 
     let user= await Repository.getOne(Database.User,{Id:data.id,Email:data.email});
 
-    console.log(user);
-    console.log(token);
-
     if(user==null){
 
         let newUserModel=new Database.User({

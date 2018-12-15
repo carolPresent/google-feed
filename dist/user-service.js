@@ -31,12 +31,8 @@ var saveLoginDetails = function () {
                     case 6:
                         user = _context.sent;
 
-
-                        console.log(user);
-                        console.log(token);
-
                         if (!(user == null)) {
-                            _context.next = 15;
+                            _context.next = 13;
                             break;
                         }
 
@@ -45,25 +41,25 @@ var saveLoginDetails = function () {
                             Email: data.email,
                             Token: token._id
                         });
-                        _context.next = 13;
+                        _context.next = 11;
                         return Repository.saveOne(newUserModel);
 
-                    case 13:
-                        _context.next = 20;
+                    case 11:
+                        _context.next = 18;
                         break;
 
-                    case 15:
-                        _context.next = 17;
+                    case 13:
+                        _context.next = 15;
                         return Repository.deleteMany(Database.Token, { _id: user.Token });
 
-                    case 17:
+                    case 15:
 
                         user.Token = token._id;
 
-                        _context.next = 20;
+                        _context.next = 18;
                         return user.save();
 
-                    case 20:
+                    case 18:
                     case 'end':
                         return _context.stop();
                 }

@@ -50,33 +50,41 @@ app.get('/signinurl', function (req, res) {
     res.send(googleapis.UrlGoogle());
 });
 
-app.get('/feed', function () {
+app.get('/feed', function (req, res) {
+    res.sendFile("/feed.html", { root: __dirname });
+});
+
+app.post('/loginSave', function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {
                 switch (_context.prev = _context.next) {
                     case 0:
                         _context.prev = 0;
-                        _context.next = 3;
+                        _context.t0 = res;
+                        _context.next = 4;
                         return googleapis.GetGoogleAccountFromCode(req.query.code);
 
-                    case 3:
-                        res.sendFile("/feed.html", { root: __dirname });
-                        _context.next = 9;
+                    case 4:
+                        _context.t1 = _context.sent;
+
+                        _context.t0.send.call(_context.t0, _context.t1);
+
+                        _context.next = 11;
                         break;
 
-                    case 6:
-                        _context.prev = 6;
-                        _context.t0 = _context['catch'](0);
+                    case 8:
+                        _context.prev = 8;
+                        _context.t2 = _context['catch'](0);
 
                         resn.status(500).send("Internal server error");
 
-                    case 9:
+                    case 11:
                     case 'end':
                         return _context.stop();
                 }
             }
-        }, _callee, undefined, [[0, 6]]);
+        }, _callee, undefined, [[0, 8]]);
     }));
 
     return function (_x, _x2) {

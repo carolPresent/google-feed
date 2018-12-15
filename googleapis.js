@@ -56,6 +56,8 @@ async function getGoogleAccountFromCode(code) {
 
     UserService.SaveLoginDetails(model);
 
+    return model;
+
 }
 
 module.exports={

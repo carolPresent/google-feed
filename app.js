@@ -46,12 +46,15 @@ app.get('/signinurl',(req,res)=>{
     res.send(googleapis.UrlGoogle());
 });
 
-app.get('/feed',async (req,res)=>{
+app.get('/feed',(req,res)=>{
+    res.sendFile("/feed.html",{root:__dirname});
+});
+
+app.post('/loginSave',async (req,res)=>{
 
     try
     {
-        await googleapis.GetGoogleAccountFromCode(req.query.code)
-        res.sendFile("/feed.html",{root:__dirname});
+        res.send(await googleapis.GetGoogleAccountFromCode(req.query.code));
     }
     catch(err)
     {

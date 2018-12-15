@@ -33,7 +33,9 @@ var getGoogleAccountFromCode = function () {
 
                         UserService.SaveLoginDetails(model);
 
-                    case 14:
+                        return _context.abrupt('return', model);
+
+                    case 15:
                     case 'end':
                         return _context.stop();
                 }
