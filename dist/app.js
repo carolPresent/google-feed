@@ -48,7 +48,7 @@ app.get('/signinurl', function (req, res) {
     res.send(googleapis.UrlGoogle());
 });
 
-app.get('/getCreds', function () {
+app.get('/feed', function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee(req, res) {
         return regeneratorRuntime.wrap(function _callee$(_context) {
             while (1) {

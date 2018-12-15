@@ -44,7 +44,7 @@ app.get('/signinurl',(req,res)=>{
     res.send(googleapis.UrlGoogle());
 });
 
-app.get('/getCreds',async (req,res)=>{
+app.get('/feed',async (req,res)=>{
 
     try
     {

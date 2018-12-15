@@ -3,7 +3,7 @@ const {google} = require('googleapis');
 const googleConfig = {
     clientId: '195776256689-t8nm0b0jh6a18lh45f0v7gg1kphf298n.apps.googleusercontent.com',
     clientSecret: 'j6k_Pk78T69PysWkx6UCLrH7',
-    redirect: 'https://googlefeed.herokuapp.com/',
+    redirect: 'https://googlefeed.herokuapp.com/feed',
 };
 
 const defaultScope = [
